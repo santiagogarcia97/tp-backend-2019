@@ -1,10 +1,10 @@
 # TP Backend 2019
 
-###Integrante
+### Integrante
 
 **43685** - García Santiago
 
-###Alcance
+###  Alcance
 Desarrollar un backend y frontend que permitan llevar estadísitcas de encuentros deportivos con las siguientes caracterísitcas:
 
 * ABMC de equipos deportivos: listar todos, uno, crear, modificar y eliminar.
@@ -17,7 +17,7 @@ Desarrollar un backend y frontend que permitan llevar estadísitcas de encuentro
 * Consulta de juegos activos (no finalizados).
 * Consulta de detalle de un juego informando equipos y eventos.
 
-###TP Backend
+### TP Backend
 1 - Enunciado
 1.1 - Desarrollo
 
