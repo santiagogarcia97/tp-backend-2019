@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.json());
 
-const teamRoute = require('./routes/team');
+const teamRoute = require('./routes/equipos');
 app.use(teamRoute);
 
 const port = process.env.PORT || 3000;
