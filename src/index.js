@@ -1,12 +1,13 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+
+const app = express();
 app.use(bodyParser.json());
 
 const equipoSchema = require('./models/equipoSchema.js');
-const equiposRoute = require('./routes/equipos');
-app.use(equiposRoute);
+const routes = require('./routes/routes');
+app.use(routes);
 
 const {
     serverPort,

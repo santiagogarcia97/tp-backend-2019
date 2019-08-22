@@ -6,4 +6,4 @@ const equipoSchema = new Schema({
     escudo: {type: String}
 });
 
-module.exports = mongoose.model('equipo', equipoSchema);
+module.exports = mongoose.model('equipo', equipoSchema, 'equipos');

@@ -3,12 +3,8 @@ const mongoose = require('mongoose');
 const equipo = mongoose.model('equipo');
 const router = express.Router();
 
-router.get('/team/:name', (req,res) => {
-  res.send(`Team requested = ${req.params.name}`);
-});
-
 // GET ALL
-router.get('/equipo', (req, res) => {
+router.get('/', (req, res) => {
   equipo.find().
   exec( (err, result) => {
     if (err) {
