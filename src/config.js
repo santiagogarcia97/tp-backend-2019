@@ -1,5 +1,8 @@
-const dotenv = require('dotenv');
-dotenv.config();
+const result = require('dotenv').config();
+
+if (result.error) {
+    console.log(result.parsed);
+}
 
 module.exports = {
     serverPort: process.env.SERVER_PORT,

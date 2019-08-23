@@ -2,9 +2,9 @@
   "name": "tp-backend-2019",
   "version": "1.0.0",
   "description": "TP Backend 1 - Enunciado 1.1 - Desarrollo",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
