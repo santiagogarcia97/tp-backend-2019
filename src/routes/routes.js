@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
-router.use('/equipo', require('./equipo/index'));
+router.use('/equipos', require('./equipos/index'));
+router.use('/jugadores', require('./jugadores/index'));
 
 module.exports = router;
