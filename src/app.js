@@ -11,6 +11,7 @@ require('./models/dtSchema');
 require('./models/eventoSchema');
 require('./models/tipoEventoSchema');
 require('./models/estadioSchema');
+require('./models/partidoSchema');
 
 app.use(require('./routes/routes'));
 
