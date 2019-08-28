@@ -5,7 +5,8 @@ const bodyParser = require('body-parser')
 const app = express();
 app.use(bodyParser.json());
 
-const equipoSchema = require('./models/equipoSchema.js');
+require('./models/equipoSchema.js');
+require('./models/jugadorSchema.js');
 const routes = require('./routes/routes');
 app.use(routes);
 
