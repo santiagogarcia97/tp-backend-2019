@@ -5,9 +5,14 @@ const bodyParser = require('body-parser')
 const app = express();
 app.use(bodyParser.json());
 
-const equipoSchema = require('./models/equipoSchema.js');
-const routes = require('./routes/routes');
-app.use(routes);
+require('./models/equipoSchema');
+require('./models/jugadorSchema');
+require('./models/dtSchema');
+require('./models/eventoSchema');
+require('./models/tipoEventoSchema');
+require('./models/estadioSchema');
+
+app.use(require('./routes/routes'));
 
 const {
     serverPort,
@@ -20,7 +25,7 @@ const {
 
 const mongoURL = `mongodb://${mdbUser}:${mdbPass}@${mdbHost}:${mdbPort}/${mdbName}?authSource=${mdbAuth}`;
 
-mongoose.connect(mongoURL, {useNewUrlParser: true}, (err, res) => {
+mongoose.connect(mongoURL, {useNewUrlParser: true}, (err) => {
     if (err) {
         return console.error("Error al conectar a la base de datos: " + err);
     } else {
