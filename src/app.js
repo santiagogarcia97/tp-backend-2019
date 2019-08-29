@@ -15,14 +15,7 @@ require('./models/partidoSchema');
 
 app.use(require('./routes'));
 
-const {
-    serverPort,
-    mdbUser,
-    mdbPass,
-    mdbHost,
-    mdbPort,
-    mdbName,
-    mdbAuth } = require('./config');
+const { serverPort, mdbUser, mdbPass, mdbHost, mdbPort, mdbName, mdbAuth } = require('./utils/config');
 
 const mongoURL = `mongodb://${mdbUser}:${mdbPass}@${mdbHost}:${mdbPort}/${mdbName}?authSource=${mdbAuth}`;
 
