@@ -1,4 +1,4 @@
-module.exports = sendRes = (res, statusCode, data, message, error) => {
+module.exports = (res, statusCode, message, data, error) => {
     res.status(statusCode);
-    return res.json({ data, message, error });
+    return res.json({ message, data, error });
 };
