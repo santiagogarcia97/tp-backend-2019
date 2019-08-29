@@ -13,7 +13,7 @@ require('./models/tipoEventoSchema');
 require('./models/estadioSchema');
 require('./models/partidoSchema');
 
-app.use(require('./routes/routes'));
+app.use(require('./routes'));
 
 const {
     serverPort,
