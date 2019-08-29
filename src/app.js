@@ -18,7 +18,7 @@ mongoose.connect(mongoURL, {useCreateIndex: true, useNewUrlParser: true}, (err) 
         return console.error("Error al conectar a la base de datos: " + err);
     } else {
         console.log("Conexón a la base de datos establecida correctamente.");
-        app.listen(serverPort, () => console.log(`Listening on port ${serverPort}...`));
+        app.listen(serverPort, () => console.log(`Escuchando en el puerto: ${serverPort}`));
     }
 });
 

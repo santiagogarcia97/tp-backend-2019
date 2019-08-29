@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const ctrlEstadio = require("../controllers/estadios/ctrlEstadios");
+const ctrlEstadio = require("../controllers/estadios");
 
 router.post('/estadios', ctrlEstadio.create);
 router.get('/estadios', ctrlEstadio.getAll);
