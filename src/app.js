@@ -15,7 +15,7 @@ const mongoURL = `mongodb://${mdbUser}:${mdbPass}@${mdbHost}:${mdbPort}/${mdbNam
 
 mongoose.connect(mongoURL, {useCreateIndex: true, useNewUrlParser: true}, (err) => {
     if (err) {
-        return console.error("Error al conectar a la base de datos: " + err);
+        return console.error(`Error al conectar a la base de datos: \n\t${err}`);
     } else {
         console.log("Conexón a la base de datos establecida correctamente.");
         app.listen(serverPort, () => console.log(`Escuchando en el puerto: ${serverPort}`));
