@@ -5,6 +5,6 @@ router.post('/jugadores', ctrlJugadores.create);
 router.get('/jugadores', ctrlJugadores.getAll);
 router.get('/jugadores/:id', ctrlJugadores.getById);
 router.put('/jugadores/:id', ctrlJugadores.update);
-//router.delete('/estadios/:id', ctrlEstadio.delete);
+router.delete('/jugadores/:id', ctrlJugadores.delete);
 
 module.exports = router;
