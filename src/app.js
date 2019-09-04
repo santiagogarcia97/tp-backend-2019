@@ -13,6 +13,10 @@ const { serverPort, mdbUser, mdbPass, mdbHost, mdbPort, mdbName, mdbAuth } = req
 
 const mongoURL = `mongodb://${mdbUser}:${mdbPass}@${mdbHost}:${mdbPort}/${mdbName}?authSource=${mdbAuth}`;
 
+app.use((err, req, res, next) => {
+    res.status(500).send('Something broke!')
+})
+
 mongoose.connect(mongoURL, {useCreateIndex: true, useNewUrlParser: true}, (err) => {
     if (err) {
         return console.error("Error al conectar a la base de datos: " + err);
