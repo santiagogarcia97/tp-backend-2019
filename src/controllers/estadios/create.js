@@ -6,15 +6,15 @@ const estadio = mongoose.model('estadio');
 
 module.exports = async (req, res, next) => {
     try {
-        const errors = validationResult(req);
+        let errors = validationResult(req);
 
         if (!errors.isEmpty()) {
              next(boom.badRequest('Error al validar los datos ingresados', errors));
         }
 
-        const { nombre, direccion } = req.body;
+        let { nombre, direccion } = req.body;
 
-        const estadioNew = new estadio({
+        let estadioNew = new estadio({
             nombre,
             direccion
         });
@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
                 next(boom.badImplementation('Error al intentar guardar el estadio', err));
             }
             else{
-                sendRes(res, 200, 'Estadio agregado con exito!', result, undefined);
+                sendRes(res, 200, 'Estadio agregado con exito!', result);
             }
         });
     } catch(err) {

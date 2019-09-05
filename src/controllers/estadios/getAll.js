@@ -1,26 +1,27 @@
 const { validationResult } = require('express-validator');
-const sendRes = require('../../utils/sendResponse');
 const mongoose = require('mongoose');
+const sendRes = require('../../utils/sendResponse');
+const boom = require('@hapi/boom');
 const estadio = mongoose.model('estadio');
 
 module.exports = async (req, res, next) => {
     try {
-        const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+        let errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
 
         if (!errors.isEmpty()) {
-            sendRes(res, 400, 'Error al validar los datos ingresados', null, errors);
+            next(boom.badRequest('Error al validar los datos ingresados', errors));
         }
 
         await estadio.find().
             exec( (err, result) => {
                 if (err) {
-                    sendRes(res, 500, 'Error al intentar recuperar estadios', null, err);
+                    next(boom.badImplementation('Error al intentar recuperar estadios', err));
                 }
                 else if (result.length != 0) {
-                    sendRes(res, 200, 'Estadios recuperados con exito!', result, null);
+                    sendRes(res, 200, 'Estadios recuperados con exito!', result);
                 }
                 else {
-                    sendRes(res, 200, 'No existe ningun estadio', null, null);
+                    sendRes(res, 200, 'No existe ningun estadio');
                 }
         });
     } catch(err) {

@@ -1,35 +1,36 @@
 const { validationResult } = require('express-validator');
-const sendRes = require('../../utils/sendResponse');
 const mongoose = require('mongoose');
+const sendRes = require('../../utils/sendResponse');
+const boom = require('@hapi/boom');
 const estadio = mongoose.model('estadio');
 
 module.exports = async (req, res, next) => {
     try {
-        const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+        let errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            sendRes(res, 400, 'Error al validar los datos ingresados', null, errors);
+            next(boom.badRequest('Error al validar los datos ingresados', errors));
         }
 
         await estadio.findById(req.params.id).
         exec((err, result) => {
             if (err) {
-                sendRes(res, 500, 'Error al intentar actualizar el estadio', null, err);
+                next(boom.badImplementation('Error al intentar actualizar el estadio', err));
             }
             else if (result) {
                 result.nombre = req.body.nombre || result.nombre;
                 result.direccion = req.body.direccion || result.direccion;
                 result.save((err, result) => {
                     if(err) {
-                        sendRes(res, 500, 'Error al intentar actualizar el estadio', null, err);
+                        next(boom.badImplementation('Error al intentar actualizar el estadio', err));
                     }
                     else {
-                        sendRes(res, 200, 'Estadio modificado con exito!', result, null);
+                        sendRes(res, 200, 'Estadio modificado con exito!', result);
                     }
                 });
             }
             else {
-                sendRes(res, 200, 'El estadio no existe', null, null);
+                sendRes(res, 200, 'El estadio no existe');
             }
         });
     } catch(err) {

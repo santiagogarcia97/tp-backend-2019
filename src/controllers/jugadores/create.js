@@ -1,14 +1,15 @@
 const { validationResult } = require('express-validator');
-const sendRes = require('../../utils/sendResponse');
 const mongoose = require('mongoose');
+const sendRes = require('../../utils/sendResponse');
+const boom = require('@hapi/boom');
 const jugador = mongoose.model('jugador');
 
 module.exports = async (req, res, next) => {
     try {
-        let errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+        let errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            sendRes(res, 400, 'Error al validar los datos ingresados', null, errors);
+            next(boom.badRequest('Error al validar los datos ingresados', errors));
         }
 
         let { nombre, fechaNac, equipo, goles } = req.body;
@@ -22,10 +23,10 @@ module.exports = async (req, res, next) => {
 
         await jugadorNew.save((err, result) => {
             if(err){
-                sendRes(res, 500, 'Error al intentar guardar el jugador', null, err);
+                next(boom.badImplementation('Error al intentar guardar el jugador', err));
             }
             else{
-                sendRes(res, 200, 'Jugador agregado con exito!', result, null);
+                sendRes(res, 200, 'Jugador agregado con exito!', result);
             }
         });
     } catch(err) {
