@@ -13,9 +13,7 @@ const { serverPort, mdbUser, mdbPass, mdbHost, mdbPort, mdbName, mdbAuth } = req
 
 const mongoURL = `mongodb://${mdbUser}:${mdbPass}@${mdbHost}:${mdbPort}/${mdbName}?authSource=${mdbAuth}`;
 
-app.use((err, req, res, next) => {
-    res.status(500).send('Something broke!')
-})
+app.use(require('./middlewares/errorHandler'));
 
 mongoose.connect(mongoURL, {useCreateIndex: true, useNewUrlParser: true}, (err) => {
     if (err) {

@@ -1,14 +1,15 @@
 const { validationResult } = require('express-validator');
-const sendRes = require('../../utils/sendResponse');
 const mongoose = require('mongoose');
+const sendRes = require('../../utils/sendResponse');
+const boom = require('@hapi/boom');
 const estadio = mongoose.model('estadio');
 
 module.exports = async (req, res, next) => {
     try {
-        const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+        const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            sendRes(res, 400, 'Error al validar los datos ingresados', null, errors);
+             next(boom.badRequest('Error al validar los datos ingresados', errors));
         }
 
         const { nombre, direccion } = req.body;
@@ -20,10 +21,10 @@ module.exports = async (req, res, next) => {
 
         await estadioNew.save((err, result) => {
             if(err){
-                sendRes(res, 500, 'Error al intentar guardar el estadio', null, err);
+                next(boom.badImplementation('Error al intentar guardar el estadio', err));
             }
             else{
-                sendRes(res, 200, 'Estadio agregado con exito!', result, null);
+                sendRes(res, 200, 'Estadio agregado con exito!', result, undefined);
             }
         });
     } catch(err) {
