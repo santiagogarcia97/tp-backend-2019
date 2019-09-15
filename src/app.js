@@ -17,7 +17,7 @@ app.use(require('./middlewares/errorHandler'));
 
 mongoose.connect(mongoURL, {useCreateIndex: true, useNewUrlParser: true}, (err) => {
     if (err) {
-        return console.error(`Error al conectar a la base de datos: \n\t${err}`);
+        return console.error(`Error al conectar a la base de datos: \n${err}`);
     } else {
         console.log("Conexón a la base de datos establecida correctamente.");
         app.listen(serverPort, () => console.log(`Escuchando en el puerto: ${serverPort}`));
