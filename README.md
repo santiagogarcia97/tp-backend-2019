@@ -1,16 +1,16 @@
 # TP Backend 2019
 
-### Integrante
-
 **43685** - García Santiago
 
 ###  Alcance
 Desarrollar un backend y frontend que permitan llevar estadísitcas de encuentros deportivos con las siguientes caracterísitcas:
 
 * ABMC de equipos deportivos: listar todos, uno, crear, modificar y eliminar.
+* ABMC de jugadores: listar todos, uno, crear, modificar y eliminar.
+* ABMC de estadios: listar todos, uno, crear, modificar y eliminar.
+* ABMC de tipo de eventos (goles, amonestaciones, cambios): listar todos, uno, crear, modificar y eliminar.
 * Alta de juegos (partidos) indicando los id de los equipos y la fecha y hora de inicio.
 * Informe de finalización de juego y baja de juego indicando el id del juego.
-* ABMC de tipo de eventos (goles, amonestaciones, cambios): listar todos, uno, crear, modificar y eliminar.
 * Informar nuevo evento indicando juego y datos necesarios según el evento (i.e. tipo, equipo, hora, etc).
 * Eliminar un evento con su id.
 * Consulta de juegos.
