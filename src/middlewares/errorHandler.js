@@ -4,7 +4,10 @@ const boom = require('@hapi/boom');
 module.exports = (err, req, res, next) => {
 
   if (boom.isBoom(err)){
-    return sendRes(res, err.output.statusCode, err.message, undefined, err);
+    if (err.data && err.data.isJoi) {
+      return sendRes(res, err.output.statusCode, err.message, undefined, err.data.details);
+    }
+    else return sendRes(res, err.output.statusCode, err.message, undefined, err.data);
   }
   if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
     return sendRes(res, undefined, err.message, undefined, err);

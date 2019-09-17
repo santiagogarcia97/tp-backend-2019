@@ -4,7 +4,7 @@ const boom = require('@hapi/boom');
 const estadioModel = mongoose.model('estadio');
 
 module.exports = async (req, res, next) => {
-  try {
+  try{
 
     let estadioNew = {
       nombre: req.body.nombre,
@@ -12,8 +12,8 @@ module.exports = async (req, res, next) => {
     }
 
     let error = estadioModel.joiValidate(estadioNew);
-    if(error)
-      return next(boom.badRequest('Error al validar los datos ingresados'), error)
+    if(error.error)
+      return next(boom.badRequest('Error al validar los datos ingresados', error.error))
 
     let estadio = new estadioModel(estadioNew);
 
@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
       }
     });
 
-    } catch(err) {
-      return next(err)
+    } catch(err){
+      return next(err);
   }
 }
