@@ -16,7 +16,7 @@ tipoEventoSchema.statics.joiValidate = (obj) => {
   let Joi = require('@hapi/joi');
   let schema = {
     desc:  Joi.string().max(30).required(),
-    icono:  Joi.string().max(100).required()
+    icono:  Joi.string().required()
   }
 
   return Joi.validate(obj, schema);
