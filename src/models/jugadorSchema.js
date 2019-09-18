@@ -26,7 +26,7 @@ jugadorSchema.statics.joiValidate = (obj) => {
   let schema = {
     nombre:  Joi.string().min(3).max(30).required(),
     fechaNac: Joi.date().max(Date()),
-    equipo: Joi.string().regex('/^[a-fA-F0-9]{24}$/'),
+    equipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
     goles: Joi.number().integer().min(0)
   }
 

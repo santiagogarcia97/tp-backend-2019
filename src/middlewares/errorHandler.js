@@ -10,7 +10,7 @@ module.exports = (err, req, res, next) => {
     else return sendRes(res, err.output.statusCode, err.message, undefined, err.data);
   }
   if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
-    return sendRes(res, undefined, err.message, undefined, err);
+    return sendRes(res, 400, err.message, undefined, err);
   }
   else {
     return sendRes(res, err.status || 500, err.message || 'Error desconocido', undefined, err);
