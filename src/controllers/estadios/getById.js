@@ -1,29 +1,24 @@
-const { validationResult } = require('express-validator');
-const sendRes = require('../../utils/sendResponse');
 const mongoose = require('mongoose');
-const estadio = mongoose.model('estadio');
+const sendRes = require('../../utils/sendResponse');
+const boom = require('@hapi/boom');
+const estadioModel = mongoose.model('estadio');
 
 module.exports = async (req, res, next) => {
-    try {
-        const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+  try {
 
-        if (!errors.isEmpty()) {
-            sendRes(res, 400, 'Error al validar los datos ingresados', null, errors);
-        }
-
-        await estadio.findById(req.params.id).
-            exec((err, result) => {
-                if (err) {
-                    sendRes(res, 500, 'Error al intentar recuperar estadios', null, err);
-                }
-                else if(result != null) {
-                    sendRes(res, 200, 'Estadio recuperado con exito!', result, null);
-                }
-                else {
-                    sendRes(res, 200, 'El estadio no existe', null, null);
-                }
-            });
-    } catch(err) {
-        return next(err)
-    }
+    await estadioModel.findById(req.params.id).
+    exec((err, result) => {
+      if (!err && result) {
+        return sendRes(res, 200, 'Estadio recuperado con exito!', result);
+      }
+      else if(!err && !result) {
+        return sendRes(res, 200, 'El estadio no existe');
+      }
+      else {
+        return next(boom.badRequest('Error al intentar recuperar estadio', err));
+      }
+    });
+  } catch(err) {
+    return next(err)
+  }
 }

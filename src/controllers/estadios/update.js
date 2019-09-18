@@ -1,38 +1,43 @@
-const { validationResult } = require('express-validator');
-const sendRes = require('../../utils/sendResponse');
 const mongoose = require('mongoose');
-const estadio = mongoose.model('estadio');
+const sendRes = require('../../utils/sendResponse');
+const boom = require('@hapi/boom');
+const estadioModel = mongoose.model('estadio');
 
 module.exports = async (req, res, next) => {
-    try {
-        const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+  try {
 
-        if (!errors.isEmpty()) {
-            sendRes(res, 400, 'Error al validar los datos ingresados', null, errors);
+    await estadioModel.findById(req.params.id).
+    exec((err, result) => {
+      if (!err && result) {
+        let estadio = {
+          nombre: req.body.nombre || result.nombre,
+          direccion: req.body.direccion || result.direccion
         }
 
-        await estadio.findById(req.params.id).
-        exec((err, result) => {
-            if (err) {
-                sendRes(res, 500, 'Error al intentar actualizar el estadio', null, err);
-            }
-            else if (result) {
-                result.nombre = req.body.nombre || result.nombre;
-                result.direccion = req.body.direccion || result.direccion;
-                result.save((err, result) => {
-                    if(err) {
-                        sendRes(res, 500, 'Error al intentar actualizar el estadio', null, err);
-                    }
-                    else {
-                        sendRes(res, 200, 'Estadio modificado con exito!', result, null);
-                    }
-                });
-            }
-            else {
-                sendRes(res, 200, 'El estadio no existe', null, null);
-            }
+        let error = estadioModel.joiValidate(estadio);
+        if(error.error)
+          return next(boom.badRequest('Error al validar los datos ingresados', error.error))
+
+        result.nombre = req.body.nombre || result.nombre;
+        result.direccion = req.body.direccion || result.direccion;
+
+        result.save((err, result) => {
+          if(!err && result){
+            return sendRes(res, 200, 'Estadio modificado con exito!', result);
+          } else{
+            return next(boom.badImplementation('Error al intentar actualizar el estadio', err));
+          }
         });
-    } catch(err) {
-        return next(err)
-    }
+      }
+      else if(!err && !result) {
+        return sendRes(res, 200, 'El estadio no existe');
+      }
+      else {
+        return next(boom.badRequest('Error al intentar actualizar el estadio', err));
+      }
+
+    });
+  } catch(err) {
+    return next(err)
+  }
 }
