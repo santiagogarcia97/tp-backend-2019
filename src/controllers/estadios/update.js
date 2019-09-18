@@ -41,23 +41,3 @@ module.exports = async (req, res, next) => {
     return next(err)
   }
 }
-
-/*
-if (err) {
-  next(boom.badImplementation('Error al intentar actualizar el estadio', err));
-}
-else if (result) {
-  result.nombre = req.body.nombre || result.nombre;
-  result.direccion = req.body.direccion || result.direccion;
-  result.save((err, result) => {
-    if(err) {
-      next(boom.badImplementation('Error al intentar actualizar el estadio', err));
-    }
-    else {
-      sendRes(res, 200, 'Estadio modificado con exito!', result);
-    }
-  });
-}
-else {
-  sendRes(res, 200, 'El estadio no existe');
-}*/
