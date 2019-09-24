@@ -8,11 +8,13 @@ module.exports = async (req, res, next) => {
 
     await dtModel.find().
     exec( (err, result) => {
-      if(!err && result.length !== 0){
-        return sendRes(res, 200, 'Directores Tecnicos recuperados con exito!', result);
-      }
-      else if (result.length === 0) {
-        return sendRes(res, 200, 'No existe ningun Director Tecnico');
+      if(!err && result){
+        if(result.length !== 0){
+          return sendRes(res, 200, 'Directores Tecnicos recuperados con exito!', result);
+        }
+        else if (result.length === 0) {
+          return sendRes(res, 200, 'No existe ningun Director Tecnico');
+        }
       }
       else {
         return next(boom.badImplementation('Error al intentar recuperar Directores Tecnicos', err));
