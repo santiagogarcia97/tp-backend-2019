@@ -1,7 +1,7 @@
 module.exports = {
-    create: require('./create'),
-    getAll: require('./getAll'),
-    getById: require('./getById'),
-    update: require('./update'),
-    delete: require('./delete')
+    create: require('./dtsCreate'),
+    getAll: require('./dtsGetAll'),
+    getById: require('./dtsGetById'),
+    update: require('./dtsUpdate'),
+    delete: require('./dtsDelete')
 }
