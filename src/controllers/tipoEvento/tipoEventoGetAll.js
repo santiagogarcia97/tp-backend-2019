@@ -6,7 +6,7 @@ const tipoEventoModel = mongoose.model('tipoEvento');
 module.exports = async (req, res, next) => {
   try{
 
-    await tipoEventoModel.find().
+    await tipoEventoModel.find(null, 'desc icono').
       exec( (err, result) => {
         if(!err && result){
           if(result.length !== 0){

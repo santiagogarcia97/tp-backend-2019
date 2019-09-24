@@ -6,7 +6,7 @@ const estadioModel = mongoose.model('estadio');
 module.exports = async (req, res, next) => {
   try{
 
-    await estadioModel.find().
+    await estadioModel.find(null, 'nombre direccion').
       exec( (err, result) => {
       if(!err && result){
         if(result.length !== 0){
