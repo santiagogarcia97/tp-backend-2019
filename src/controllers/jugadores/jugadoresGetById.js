@@ -7,15 +7,15 @@ module.exports = async (req, res, next) => {
   try{
 
     await jugadorModel.findById(req.params.id).
-    exec( (err, result) => {
-      if(!err && result.length !== 0){
+    exec((err, result) => {
+      if (!err && result) {
         return sendRes(res, 200, 'Jugador recuperado con exito!', result);
       }
-      else if (result.length === 0) {
+      else if(!err && !result) {
         return sendRes(res, 200, 'El jugador no existe');
       }
       else {
-        return next(boom.badImplementation('Error al intentar recuperar jugador', err));
+        return next(boom.badRequest('Error al intentar recuperar jugador', err));
       }
     });
 
