@@ -18,6 +18,10 @@ const jugadorSchema = new Schema({
   goles: {
     type: Number,
     default: 0
+  },
+  eliminado: {
+    type: Boolean,
+    default: false
   }
 });
 

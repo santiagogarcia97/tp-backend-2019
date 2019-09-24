@@ -8,6 +8,10 @@ const estadioSchema = new Schema({
   },
   direccion: {
     type: String
+  },
+  eliminado: {
+    type: Boolean,
+    default: false
   }
 });
 
