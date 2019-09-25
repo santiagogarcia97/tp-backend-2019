@@ -3,6 +3,7 @@ const ctrlEquipos = require('../controllers/equipos');
 
 router.post('/equipos', ctrlEquipos.create);
 router.delete('/equipos/:id', ctrlEquipos.delete);
+router.get('/equipos', ctrlEquipos.getAll);
 /*
 router.get('/dts', ctrlDts.getAll);
 router.get('/dts/:id', ctrlDts.getById);
