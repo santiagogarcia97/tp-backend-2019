@@ -2,6 +2,7 @@ const router = require('express').Router();
 const ctrlEquipos = require('../controllers/equipos');
 
 router.post('/equipos', ctrlEquipos.create);
+router.delete('/equipos/:id', ctrlEquipos.delete);
 /*
 router.get('/dts', ctrlDts.getAll);
 router.get('/dts/:id', ctrlDts.getById);

@@ -17,6 +17,10 @@ const equipoSchema = new Schema({
   escudo: {
     type: String,
     default: null
+  },
+  eliminado: {
+    type: Boolean,
+    default: false
   }
 });
 
