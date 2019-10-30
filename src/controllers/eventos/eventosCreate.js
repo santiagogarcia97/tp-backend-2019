@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
       tipo: req.body.tipo,
       equipo: req.body.equipo,
       jugador: req.body.jugador,
-      fechaHora: (req.body.fechaHora === null) ? undefined : req.body.fechaHora,
+      fechaHora: (req.body.fechaHora === null) ? undefined : req.body.fechaHora
     }
 
     let error = eventoModel.joiValidate(eventoNew);

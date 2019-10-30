@@ -3,5 +3,5 @@ module.exports = {
   delete: require('./eventosDelete'),
   getAll: require('./eventosGetAll'),
   getById: require('./eventosGetById'),
-  //update: require('./equiposUpdate')
+  update: require('./eventosUpdate')
 }
