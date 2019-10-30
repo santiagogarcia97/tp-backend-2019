@@ -1,6 +1,6 @@
 module.exports = {
   create: require('./eventosCreate'),
-  //delete: require('./equiposDelete'),
+  delete: require('./eventosDelete'),
   getAll: require('./eventosGetAll'),
   getById: require('./eventosGetById'),
   //update: require('./equiposUpdate')
