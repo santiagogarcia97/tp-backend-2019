@@ -1,5 +1,5 @@
 module.exports = {
-//  create: require('./equiposCreate'),
+  create: require('./eventosCreate'),
   //delete: require('./equiposDelete'),
   getAll: require('./eventosGetAll'),
   getById: require('./eventosGetById'),
