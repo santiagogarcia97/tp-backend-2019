@@ -5,6 +5,6 @@ router.post('/partidos', ctrlPartidos.create);
 router.delete('/partidos/:id', ctrlPartidos.delete);
 router.get('/partidos', ctrlPartidos.getAll);
 router.get('/partidos/:id', ctrlPartidos.getById);
-//router.put('/partidos/:id', ctrlPartidos.update);
+router.put('/partidos/:id', ctrlPartidos.update);
 
 module.exports = router;
