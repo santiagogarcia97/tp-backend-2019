@@ -14,6 +14,10 @@ const dtSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'equipos',
     default: null
+  },
+  eliminado: {
+    type: Boolean,
+    default: false
   }
 });
 

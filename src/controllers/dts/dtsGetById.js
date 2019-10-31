@@ -6,7 +6,7 @@ const dtModel = mongoose.model('dt');
 module.exports = async (req, res, next) => {
   try{
 
-    await dtModel.findById(req.params.id).
+    await dtModel.findById(req.params.id, 'nombre fechaNac equipo').
     exec((err, result) => {
       if (!err && result) {
         return sendRes(res, 200, 'Director Tecnico recuperado con exito!', result);

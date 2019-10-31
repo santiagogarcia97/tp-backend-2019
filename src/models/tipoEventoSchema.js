@@ -9,7 +9,11 @@ const tipoEventoSchema = new Schema({
     icono: {
         type: String,
         required: true
-    }
+    },
+  eliminado: {
+    type: Boolean,
+    default: false
+  }
 });
 
 tipoEventoSchema.statics.joiValidate = (obj) => {

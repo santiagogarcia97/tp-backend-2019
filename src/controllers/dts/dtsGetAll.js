@@ -6,7 +6,7 @@ const dtModel = mongoose.model('dt');
 module.exports = async (req, res, next) => {
   try{
 
-    await dtModel.find().
+    await dtModel.find(null, 'nombre fechaNac equipo').
     exec( (err, result) => {
       if(!err && result){
         if(result.length !== 0){

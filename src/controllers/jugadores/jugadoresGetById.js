@@ -6,7 +6,7 @@ const jugadorModel = mongoose.model('jugador');
 module.exports = async (req, res, next) => {
   try{
 
-    await jugadorModel.findById(req.params.id).
+    await jugadorModel.findById(req.params.id, 'nombre fechaNac equipo goles').
     exec((err, result) => {
       if (!err && result) {
         return sendRes(res, 200, 'Jugador recuperado con exito!', result);
