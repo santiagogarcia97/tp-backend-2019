@@ -8,21 +8,21 @@ const partidoSchema = new Schema({
   },
   local: {
     type: Schema.Types.ObjectId,
-    ref: 'equipos',
+    ref: 'equipo',
     required: true
   },
   visitante: {
     type: Schema.Types.ObjectId,
-    ref: 'equipos',
+    ref: 'equipo',
     required: true
   },
   eventos: [{
     type: Schema.Types.ObjectId,
-    ref: 'eventos'
+    ref: 'evento'
   }],
   estadio: {
     type: Schema.Types.ObjectId,
-    ref: 'estadios',
+    ref: 'estadio',
     required: true
   },
   eliminado: {
@@ -34,11 +34,11 @@ const partidoSchema = new Schema({
 partidoSchema.statics.joiValidate = (obj) => {
   let Joi = require('@hapi/joi');
   let schema = {
-    fechaHora:  Joi.date(),
-    local: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    visitante: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
+    fechaHora:  Joi.date().required(),
+    local: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
+    visitante: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
     eventos: Joi.array().items(Joi.string().regex(/^[a-fA-F0-9]{24}$/)),
-    estadio: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
+    estadio: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
   }
 
   return Joi.validate(obj, schema);

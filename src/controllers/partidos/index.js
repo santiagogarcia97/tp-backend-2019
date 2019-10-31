@@ -1,5 +1,5 @@
 module.exports = {
-  //create: require('./partidosCreate'),
+  create: require('./partidosCreate'),
   //delete: require('./partidosDelete'),
   getAll: require('./partidosGetAll'),
   getById: require('./partidosGetById'),
