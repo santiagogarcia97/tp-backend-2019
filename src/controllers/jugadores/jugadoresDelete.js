@@ -9,25 +9,27 @@ module.exports = async (req, res, next) => {
     await jugadorModel.findById(req.params.id).
     exec((err, result) => {
       if (!err && result) {
-        result.remove((err, result) => {
+
+        result.eliminado = true;
+
+        result.save((err, result) => {
           if(!err && result) {
             return sendRes(res, 200, 'Jugador eliminado con exito!', result);
           }
           else {
-            return next(boom.badImplementation('Error al intentar eliminar el jugador', err));
+            return next(boom.badImplementation('Error al intentar eliminar el Jugador', err));
           }
         });
       }
       else if(!err && !result) {
-        return sendRes(res, 200, 'El jugador que intenta eliminar no existe');
+        return sendRes(res, 200, 'El Jugador que intenta eliminar no existe');
       }
       else {
-        return next(boom.badRequest('Error al intentar eliminar el jugador', err));
+        return next(boom.badImplementation('Error al intentar eliminar el Jugador', err));
       }
-    });
 
+    });
   } catch(err) {
     return next(err)
   }
 }
-
