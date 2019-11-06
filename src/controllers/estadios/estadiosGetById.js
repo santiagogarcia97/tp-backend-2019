@@ -6,7 +6,7 @@ const estadioModel = mongoose.model('estadio');
 module.exports = async (req, res, next) => {
   try {
 
-    await estadioModel.findById(req.params.id, 'nombre direccion').
+    await estadioModel.findById(req.params.id, 'nombre direccion eliminado').
     exec((err, result) => {
       if (!err && result) {
         return sendRes(res, 200, 'Estadio recuperado con exito!', result);
