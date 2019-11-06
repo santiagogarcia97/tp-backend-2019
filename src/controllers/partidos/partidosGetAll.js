@@ -3,7 +3,7 @@ const sendRes = require('../../utils/sendResponse');
 const boom = require('@hapi/boom');
 const partidoModel = mongoose.model('partido');
 
-const  populateOptions = [{
+const populateOptions = [{
     path: 'local visitante',
     select: 'nombre escudo',
     populate: {

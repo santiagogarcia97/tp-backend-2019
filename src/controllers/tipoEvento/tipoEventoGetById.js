@@ -6,7 +6,7 @@ const tipoEventoModel = mongoose.model('tipoEvento');
 module.exports = async (req, res, next) => {
   try {
 
-    await tipoEventoModel.findById(req.params.id, 'desc icono').
+    await tipoEventoModel.findById(req.params.id, 'desc icono eliminado').
     exec((err, result) => {
       if (!err && result) {
         return sendRes(res, 200, 'Tipo de Evento recuperado con exito!', result);
