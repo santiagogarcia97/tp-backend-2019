@@ -8,11 +8,12 @@ const equipoSchema = new Schema({
   },
   jugadores: [{
     type: Schema.Types.ObjectId,
-    ref: 'jugadores'
+    ref: 'jugador'
   }],
   dt: {
     type: Schema.Types.ObjectId,
-    ref: 'dts'
+    ref: 'dt',
+    default: null
   },
   escudo: {
     type: String,

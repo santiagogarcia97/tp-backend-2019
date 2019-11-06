@@ -4,22 +4,22 @@ const Schema = mongoose.Schema;
 const eventoSchema = new Schema({
   partido: {
     type: Schema.Types.ObjectId,
-    ref: 'partidos',
+    ref: 'partido',
     required: true
   },
   tipo: {
     type: Schema.Types.ObjectId,
-    ref: 'tipos-eventos',
+    ref: 'tipoEvento',
     required: true
   },
   equipo: {
     type: Schema.Types.ObjectId,
-    ref: 'equipos',
+    ref: 'equipo',
     required: true
   },
   jugador: {
     type: Schema.Types.ObjectId,
-    ref: 'jugadores',
+    ref: 'jugador',
     required: true
   },
   fechaHora: {

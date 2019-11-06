@@ -3,11 +3,26 @@ const sendRes = require('../../utils/sendResponse');
 const boom = require('@hapi/boom');
 const partidoModel = mongoose.model('partido');
 
+const  populateOptions = [{
+    path: 'local visitante',
+    select: 'nombre escudo',
+    populate: {
+      path: 'dt',
+      select: 'nombre fechaNac'
+    },
+  },
+  {
+    path: 'estadio',
+    select: 'nombre direccion',
+  }
+];
+
 module.exports = async (req, res, next) => {
   try{
 
-    await partidoModel.find({eliminado: false}, 'fechaHora local visitante eventos estadio').
-      exec( (err, result) => {
+    await partidoModel.find({eliminado: false}, 'fechaHora local visitante eventos estadio')
+      .populate(populateOptions)
+      .exec( (err, result) => {
 
       if(!err && result){
         if(result.length !== 0){
