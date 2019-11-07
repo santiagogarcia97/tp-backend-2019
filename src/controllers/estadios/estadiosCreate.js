@@ -8,7 +8,8 @@ module.exports = async (req, res, next) => {
 
     let estadioNew = {
       nombre: req.body.nombre,
-      direccion: req.body.direccion
+      direccion: req.body.direccion,
+      imagen: req.body.imagen
     }
 
     let error = estadioModel.joiValidate(estadioNew);

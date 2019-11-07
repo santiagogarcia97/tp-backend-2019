@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 
 router.use('/api', require('./estadios'));
 router.use('/api', require('./jugadores'));

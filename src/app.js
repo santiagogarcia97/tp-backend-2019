@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 
 app.use(require('./routes'));
 
+app.use('/static', express.static(__dirname + '/static'));
+
 app.use(require('./middlewares/errorHandler'));
 
 mongoose.connect(mongoURL, {useCreateIndex: true, useNewUrlParser: true}, (err) => {

@@ -11,7 +11,8 @@ module.exports = async (req, res, next) => {
       if (!err && result) {
         let estadio = {
           nombre: req.body.nombre || result.nombre,
-          direccion: req.body.direccion || result.direccion
+          direccion: req.body.direccion || result.direccion,
+          imagen: req.body.imagen || result.imagen
         }
 
         let error = estadioModel.joiValidate(estadio);
@@ -20,6 +21,7 @@ module.exports = async (req, res, next) => {
 
         result.nombre = req.body.nombre || result.nombre;
         result.direccion = req.body.direccion || result.direccion;
+        result.imagen = req.body.imagen || result.imagen;
 
         result.save((err, result) => {
           if(!err && result){
