@@ -20,7 +20,7 @@ const populateOptions = [{
 module.exports = async (req, res, next) => {
   try {
 
-    await eventoModel.findById(req.params.id, 'partido equipo jugador tipo fechaHora eliminado')
+    await eventoModel.findById(req.params.id, 'partido equipo jugador tipo minutoOcurrencia eliminado')
       .populate(populateOptions)
       .exec((err, result) => {
         if (!err && result) {

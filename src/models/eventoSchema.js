@@ -22,10 +22,9 @@ const eventoSchema = new Schema({
     ref: 'jugador',
     required: true
   },
-  fechaHora: {
-    type: Date,
-    required: true,
-    default: Date.now()
+  minutoOcurrencia: {
+    type: Number,
+    required: true
   },
   eliminado: {
     type: Boolean,
@@ -36,11 +35,11 @@ const eventoSchema = new Schema({
 eventoSchema.statics.joiValidate = (obj) => {
   let Joi = require('@hapi/joi');
   let schema = {
-    partido:  Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    tipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    equipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    jugador:Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    fechaHora: Joi.date().max(Date()),
+    partido:  Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
+    tipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
+    equipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
+    jugador:Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
+    minutoOcurrencia: Joi.number().integer().min(0).max(150).required()
   }
 
   return Joi.validate(obj, schema);
