@@ -22,7 +22,7 @@ estadioSchema.statics.joiValidate = (obj) => {
   let Joi = require('@hapi/joi');
   let schema = {
     nombre:  Joi.string().min(3).max(50).required(),
-    direccion: Joi.string().min(3).max(50),
+    direccion: Joi.string().min(3).max(100),
     imagen: Joi.string().min(3)
   }
 

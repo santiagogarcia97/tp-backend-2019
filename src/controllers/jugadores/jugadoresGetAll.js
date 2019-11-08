@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const sendRes = require('../../utils/sendResponse');
 const boom = require('@hapi/boom');
+const escapeChars = require('../../utils/escapeChars');
 const jugadorModel = mongoose.model('jugador');
 
 const populateOptions = {
@@ -15,7 +16,15 @@ const populateOptions = {
 module.exports = async (req, res, next) => {
   try{
 
-    await jugadorModel.find({eliminado: false}, 'nombre fechaNac equipo goles')
+    let findOptions = {
+      nombre: { $regex: '.*.'},
+      eliminado: false
+    }
+    if(req.query.search){
+      findOptions.nombre = { $regex: '.*'+ escapeChars(req.query.search) + '.*', $options: 'i' }
+    }
+
+    await jugadorModel.find(findOptions, 'nombre fechaNac equipo goles')
       .populate(populateOptions)
       .exec( (err, result) => {
         if(!err && result){
@@ -27,7 +36,7 @@ module.exports = async (req, res, next) => {
           }
         }
         else{
-          return next(boom.badImplementation('Error al intentar recuperar jugadores', err));
+          return next(boom.badRequest('Error al intentar recuperar jugadores', err));
         }
       });
 

@@ -12,8 +12,8 @@ module.exports = async (req, res, next) => {
 
         let equipo = {
           nombre: req.body.nombre || result.nombre,
-          jugadores: req.body.jugadores || result.jugadores,
-          dt: req.body.dt || result.dt,
+          jugadores: req.body.jugadores || result.jugadores.str,
+          dt: req.body.dt || (result.dt === null) ? undefined : result.dt.str,
           escudo: req.body.escudo || (result.escudo === null) ? undefined : result.escudo.str
         }
 

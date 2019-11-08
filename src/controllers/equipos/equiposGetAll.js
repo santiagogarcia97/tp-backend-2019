@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const sendRes = require('../../utils/sendResponse');
 const boom = require('@hapi/boom');
+const escapeChars = require('../../utils/escapeChars');
 const equipoModel = mongoose.model('equipo');
 
 const populateOptions = [{
@@ -16,7 +17,15 @@ const populateOptions = [{
 module.exports = async (req, res, next) => {
   try{
 
-    await equipoModel.find({eliminado: false}, 'nombre jugadores dt escudo')
+    let findOptions = {
+      nombre: { $regex: '.*.'},
+      eliminado: false
+    }
+    if(req.query.search){
+      findOptions.nombre = { $regex: '.*'+ escapeChars(req.query.search) + '.*', $options: 'i' }
+    }
+
+    await equipoModel.find(findOptions, 'nombre jugadores dt escudo')
       .populate(populateOptions)
       .exec( (err, result) => {
 
