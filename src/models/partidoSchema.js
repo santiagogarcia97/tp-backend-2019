@@ -25,6 +25,10 @@ const partidoSchema = new Schema({
     ref: 'estadio',
     required: true
   },
+  finalizado: {
+    type: Boolean,
+    default: false
+  },
   eliminado: {
     type: Boolean,
     default: false

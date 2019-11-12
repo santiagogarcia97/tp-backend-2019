@@ -8,7 +8,7 @@ const populateOptions = [{
     select: 'nombre escudo',
     populate: {
       path: 'dt',
-      select: 'nombre fechaNac'
+      select: 'nombre'
     },
   },
   {
@@ -20,7 +20,7 @@ const populateOptions = [{
 module.exports = async (req, res, next) => {
   try{
 
-    await partidoModel.find({eliminado: false}, 'fechaHora local visitante eventos estadio')
+    await partidoModel.find({eliminado: false}, 'fechaHora local visitante estadio finalizado')
       .populate(populateOptions)
       .exec( (err, result) => {
 
