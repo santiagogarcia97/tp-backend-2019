@@ -8,14 +8,14 @@ const populateOptions = {
   select: 'nombre escudo',
   populate: {
     path: 'dt',
-    select: 'nombre fechaNac'
+    select: 'nombre'
   }
 };
 
 module.exports = async (req, res, next) => {
   try{
 
-    await jugadorModel.findById(req.params.id, 'nombre fechaNac equipo goles eliminado')
+    await jugadorModel.findById(req.params.id, 'nombre fechaNac equipo goles amarillas rojas eliminado')
       .populate(populateOptions)
       .exec((err, result) => {
         if (!err && result) {

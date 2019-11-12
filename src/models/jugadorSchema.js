@@ -19,6 +19,14 @@ const jugadorSchema = new Schema({
     type: Number,
     default: 0
   },
+  amarillas: {
+    type: Number,
+    default: 0
+  },
+  rojas: {
+    type: Number,
+    default: 0
+  },
   eliminado: {
     type: Boolean,
     default: false
@@ -31,7 +39,9 @@ jugadorSchema.statics.joiValidate = (obj) => {
     nombre:  Joi.string().min(3).max(30).required(),
     fechaNac: Joi.date().max(Date()),
     equipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    goles: Joi.number().integer().min(0)
+    goles: Joi.number().integer().min(0),
+    amarillas: Joi.number().integer().min(0),
+    rojas: Joi.number().integer().min(0)
   }
 
   return Joi.validate(obj, schema);

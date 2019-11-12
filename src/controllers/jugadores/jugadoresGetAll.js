@@ -9,7 +9,7 @@ const populateOptions = {
   select: 'nombre escudo',
   populate: {
     path: 'dt',
-    select: 'nombre fechaNac'
+    select: 'nombre'
   }
 };
 
@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
       findOptions.nombre = { $regex: '.*'+ escapeChars(req.query.search) + '.*', $options: 'i' }
     }
 
-    await jugadorModel.find(findOptions, 'nombre fechaNac equipo goles')
+    await jugadorModel.find(findOptions, 'nombre fechaNac equipo goles amarillas rojas')
       .populate(populateOptions)
       .exec( (err, result) => {
         if(!err && result){
