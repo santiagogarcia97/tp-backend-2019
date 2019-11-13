@@ -14,13 +14,11 @@ const eventoSchema = new Schema({
   },
   equipo: {
     type: Schema.Types.ObjectId,
-    ref: 'equipo',
-    required: true
+    ref: 'equipo'
   },
   jugador: {
     type: Schema.Types.ObjectId,
-    ref: 'jugador',
-    required: true
+    ref: 'jugador'
   },
   minutoOcurrencia: {
     type: Number,
