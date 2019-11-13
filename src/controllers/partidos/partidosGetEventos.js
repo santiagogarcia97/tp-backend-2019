@@ -21,6 +21,7 @@ module.exports = async (req, res, next) => {
   try{
 
     await eventoModel.find({partido: req.params.id, eliminado: false}, 'equipo jugador tipo minutoOcurrencia')
+      .sort({minutoOcurrencia: 1})
       .populate(populateOptions)
       .exec( (err, result) => {
 

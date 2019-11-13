@@ -17,7 +17,6 @@ module.exports = async (req, res, next) => {
   try{
 
     let findOptions = {
-      nombre: { $regex: '.*.'},
       eliminado: false
     }
     if(req.query.search){

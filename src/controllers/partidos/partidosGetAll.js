@@ -20,7 +20,17 @@ const populateOptions = [{
 module.exports = async (req, res, next) => {
   try{
 
-    await partidoModel.find({eliminado: false}, 'fechaHora local visitante estadio finalizado')
+    let findOptions = {
+      eliminado: false
+    }
+
+    if(req.query.finalizado === 'true') {
+      findOptions.finalizado = true;
+    } else if(req.query.finalizado === 'false'){
+      findOptions.finalizado = false;
+    }
+
+    await partidoModel.find(findOptions, 'fechaHora local visitante estadio finalizado')
       .populate(populateOptions)
       .exec( (err, result) => {
 
