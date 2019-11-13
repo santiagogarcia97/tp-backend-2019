@@ -3,5 +3,6 @@ module.exports = {
   delete: require('./equiposDelete'),
   getAll: require('./equiposGetAll'),
   getById: require('./equiposGetById'),
-  update: require('./equiposUpdate')
+  update: require('./equiposUpdate'),
+  getJugadores: require('./equiposGetJugadores')
 }
