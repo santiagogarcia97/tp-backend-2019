@@ -12,7 +12,7 @@ const dtSchema = new Schema({
   },
   equipo: {
     type: Schema.Types.ObjectId,
-    ref: 'equipos',
+    ref: 'equipo',
     default: null
   },
   eliminado: {

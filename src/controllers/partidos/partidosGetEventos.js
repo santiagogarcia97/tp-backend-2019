@@ -4,9 +4,9 @@ const boom = require('@hapi/boom');
 const eventoModel = mongoose.model('evento');
 
 const populateOptions = [{
-    path: 'equipo',
-    select: 'nombre escudo'
-  },
+  path: 'equipo',
+  select: 'nombre escudo'
+},
   {
     path: 'jugador',
     select: 'nombre',
@@ -20,7 +20,7 @@ const populateOptions = [{
 module.exports = async (req, res, next) => {
   try{
 
-    await eventoModel.find({eliminado: false}, 'partido equipo jugador tipo minutoOcurrencia')
+    await eventoModel.find({partido: req.params.id, eliminado: false}, 'equipo jugador tipo minutoOcurrencia')
       .populate(populateOptions)
       .exec( (err, result) => {
 

@@ -9,7 +9,10 @@ module.exports = async (req, res, next) => {
     await dtModel.findById(req.params.id).
     exec((err, result) => {
       if (!err && result) {
-        result.remove((err, result) => {
+
+        result.eliminado = true;
+
+        result.save((err, result) => {
           if(!err && result) {
             return sendRes(res, 200, 'Director Tecnico eliminado con exito!', result);
           }
@@ -22,10 +25,10 @@ module.exports = async (req, res, next) => {
         return sendRes(res, 200, 'El Director Tecnico que intenta eliminar no existe');
       }
       else {
-        return next(boom.badRequest('Error al intentar eliminar el Director Tecnico', err));
+        return next(boom.badImplementation('Error al intentar eliminar el Director Tecnico', err));
       }
-    });
 
+    });
   } catch(err) {
     return next(err)
   }

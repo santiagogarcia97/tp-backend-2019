@@ -10,7 +10,9 @@ module.exports = async (req, res, next) => {
       nombre: req.body.nombre,
       fechaNac: req.body.fechaNac,
       equipo: req.body.equipo,
-      goles: req.body.goles
+      goles: req.body.goles,
+      amarillas: req.body.amarillas,
+      rojas: req.body.rojas
     }
 
     let error = jugadorModel.joiValidate(jugadorNew);

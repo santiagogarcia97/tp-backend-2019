@@ -1,14 +1,20 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const express 		          = require('express');
+const mongoose 		          = require('mongoose');
+const cors 			            = require('cors');
+const bodyParser 	          = require('body-parser');
+
 require('./models');
+
 const { serverPort, mdbUser, mdbPass, mdbHost, mdbPort, mdbName, mdbAuth } = require('./utils/config');
 const mongoURL = `mongodb://${mdbUser}:${mdbPass}@${mdbHost}:${mdbPort}/${mdbName}?authSource=${mdbAuth}`;
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use(require('./routes'));
+
+app.use('/static', express.static(__dirname + '/static'));
 
 app.use(require('./middlewares/errorHandler'));
 

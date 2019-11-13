@@ -15,7 +15,8 @@ module.exports = async (req, res, next) => {
           local: req.body.local || result.local.str,
           visitante: req.body.visitante || result.visitante.str,
           eventos: req.body.eventos || result.eventos.str,
-          estadio: req.body.estadio || result.estadio.str
+          estadio: req.body.estadio || result.estadio.str,
+          finalizado: req.body.finalizado || result.finalizado
         }
 
         let error = partidoModel.joiValidate(partido);
@@ -27,6 +28,7 @@ module.exports = async (req, res, next) => {
         result.visitante = req.body.visitante || result.visitante;
         result.eventos = req.body.eventos || result.eventos;
         result.estadio = req.body.estadio || result.estadio;
+        result.finalizado = req.body.finalizado || result.finalizado;
 
         result.save((err, result) => {
           if(!err && result){

@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
           tipo: req.body.tipo || result.tipo.str,
           equipo: req.body.equipo || result.equipo.str,
           jugador: req.body.jugador || result.jugador.str,
-          fechaHora: req.body.fechaHora || result.fechaHora
+          minutoOcurrencia: req.body.minutoOcurrencia || result.minutoOcurrencia
         }
 
         let error = eventoModel.joiValidate(evento);
@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
         result.tipo = req.body.tipo || result.tipo;
         result.equipo = req.body.equipo || result.equipo;
         result.jugador = req.body.jugador || result.jugador;
-        result.fechaHora = req.body.fechaHora || result.fechaHora;
+        result.minutoOcurrencia = req.body.minutoOcurrencia || result.minutoOcurrencia;
 
         result.save((err, result) => {
           if(!err && result){

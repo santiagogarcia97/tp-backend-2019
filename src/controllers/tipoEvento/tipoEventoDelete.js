@@ -9,7 +9,10 @@ module.exports = async (req, res, next) => {
     await tipoEventoModel.findById(req.params.id).
     exec((err, result) => {
       if (!err && result) {
-        result.remove((err, result) => {
+
+        result.eliminado = true;
+
+        result.save((err, result) => {
           if(!err && result) {
             return sendRes(res, 200, 'Tipo de Evento eliminado con exito!', result);
           }
@@ -22,7 +25,7 @@ module.exports = async (req, res, next) => {
         return sendRes(res, 200, 'El Tipo de Evento que intenta eliminar no existe');
       }
       else {
-        return next(boom.badRequest('Error al intentar eliminar el Tipo de Evento', err));
+        return next(boom.badImplementation('Error al intentar eliminar el Tipo de Evento', err));
       }
 
     });

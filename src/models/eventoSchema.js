@@ -4,28 +4,27 @@ const Schema = mongoose.Schema;
 const eventoSchema = new Schema({
   partido: {
     type: Schema.Types.ObjectId,
-    ref: 'partidos',
+    ref: 'partido',
     required: true
   },
   tipo: {
     type: Schema.Types.ObjectId,
-    ref: 'tipos-eventos',
+    ref: 'tipoEvento',
     required: true
   },
   equipo: {
     type: Schema.Types.ObjectId,
-    ref: 'equipos',
+    ref: 'equipo',
     required: true
   },
   jugador: {
     type: Schema.Types.ObjectId,
-    ref: 'jugadores',
+    ref: 'jugador',
     required: true
   },
-  fechaHora: {
-    type: Date,
-    required: true,
-    default: Date.now()
+  minutoOcurrencia: {
+    type: Number,
+    required: true
   },
   eliminado: {
     type: Boolean,
@@ -36,11 +35,11 @@ const eventoSchema = new Schema({
 eventoSchema.statics.joiValidate = (obj) => {
   let Joi = require('@hapi/joi');
   let schema = {
-    partido:  Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    tipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
+    partido:  Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
+    tipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
     equipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
     jugador:Joi.string().regex(/^[a-fA-F0-9]{24}$/),
-    fechaHora: Joi.date().max(Date()),
+    minutoOcurrencia: Joi.number().integer().min(0).max(150).required()
   }
 
   return Joi.validate(obj, schema);

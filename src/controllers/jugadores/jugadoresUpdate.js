@@ -13,7 +13,9 @@ module.exports = async (req, res, next) => {
           nombre: req.body.nombre || result.nombre,
           fechaNac: req.body.fechaNac || result.fechaNac,
           equipo: req.body.equipo || (result.equipo === null)  ? undefined : result.equipo.str,
-          goles: req.body.goles || result.goles
+          goles: req.body.goles || result.goles,
+          amarillas: req.body.amarillas || result.amarillas,
+          rojas: req.body.rojas || result.rojas
         }
 
         let error = jugadorModel.joiValidate(jugador);
@@ -24,6 +26,8 @@ module.exports = async (req, res, next) => {
         result.fechaNac = req.body.fechaNac || result.fechaNac;
         result.equipo = req.body.equipo || result.equipo;
         result.goles = req.body.goles || result.goles;
+        result.amarillas = req.body.amarillas || result.amarillas;
+        result.rojas = req.body.rojas || result.rojas;
 
         result.save((err, result) => {
           if(!err && result){

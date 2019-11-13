@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
   try{
 
     let eventoNew = {
-      partido: req.body.partido,
+      partido: req.params.id,
       tipo: req.body.tipo,
       equipo: req.body.equipo,
       jugador: req.body.jugador,
@@ -29,7 +29,7 @@ module.exports = async (req, res, next) => {
       }
     });
 
-    } catch(err){
-      return next(err);
+  } catch(err){
+    return next(err);
   }
 }
