@@ -37,8 +37,8 @@ eventoSchema.statics.joiValidate = (obj) => {
   let schema = {
     partido:  Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
     tipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
-    equipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
-    jugador:Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
+    equipo: Joi.string().regex(/^[a-fA-F0-9]{24}$/),
+    jugador:Joi.string().regex(/^[a-fA-F0-9]{24}$/),
     minutoOcurrencia: Joi.number().integer().min(0).max(150).required()
   }
 

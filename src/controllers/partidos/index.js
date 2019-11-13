@@ -3,5 +3,7 @@ module.exports = {
   delete: require('./partidosDelete'),
   getAll: require('./partidosGetAll'),
   getById: require('./partidosGetById'),
-  update: require('./partidosUpdate')
+  update: require('./partidosUpdate'),
+  getEventos: require('./partidosGetEventos'),
+  addEvento: require('./partidosAddEvento')
 }
